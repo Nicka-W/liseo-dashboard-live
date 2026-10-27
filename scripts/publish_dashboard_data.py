@@ -7,7 +7,7 @@ NOWIN = 0x08000000 if os.name == "nt" else 0  # no flashing console windows
 
 def git(*a, check=True):
     return subprocess.run(["git", *a], cwd=rd.ROOT, capture_output=True, text=True,
-                          creationflags=NOWIN, check=check).stdout.strip()
+                          creationflags=NOWIN, check=check).stdout.rstrip()
 
 def main():
     rd.main()
