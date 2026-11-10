@@ -11,13 +11,10 @@ def git(*a, check=True):
 
 def main():
     rd.main()
-    dirty = [l[3:].strip() for l in git("status", "--porcelain").splitlines()]
-    if not dirty:
+    if not git("status", "--porcelain", "--", "dashboard_data.json"):
         return
-    if dirty != ["dashboard_data.json"]:
-        sys.exit("Other uncommitted files present, not publishing: " + ", ".join(dirty))
     git("add", "dashboard_data.json")
-    git("commit", "-m", "Update dashboard data")
+    git("commit", "-m", "Update dashboard data", "--", "dashboard_data.json")  # only this file
     git("pull", "--rebase", "--autostash", check=False)
     git("push")
     print("Published.")

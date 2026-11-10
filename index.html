@@ -400,12 +400,9 @@ function colorFor(index) {
 }
 
 function hc(value, maxValue) {
-  if (!value || value === 0) return '#0d1117';
+  if (!value || value === 0) return 'rgba(255,255,255,.025)';
   var tone = Math.min(value / maxValue, 1);
-  if (tone < 0.2) return 'rgba(29,78,216,' + (0.2 + tone * 2) + ')';
-  if (tone < 0.5) return 'rgba(37,99,235,' + (0.5 + tone) + ')';
-  if (tone < 0.75) return 'rgba(234,88,12,' + (0.55 + tone) + ')';
-  return 'rgba(249,115,22,' + (0.7 + tone * 0.3) + ')';
+  return 'rgba(224,110,118,' + (0.10 + tone * 0.50).toFixed(2) + ')';
 }
 
 function metricValue(raw, teamMonth) {
