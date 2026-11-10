@@ -99,9 +99,30 @@ table.tm td.ttl{border-left:1px solid var(--border);font-weight:500}
 #empty{display:none;background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:20px 22px;color:var(--muted);font-family:'DM Mono',monospace}
 @media (max-width:720px){header,.ctrls,#sbar,.main{padding-left:16px;padding-right:16px}.hdr-meta{text-align:left}.chart-grid{grid-template-columns:1fr}}
 </style>
+<style id="calm">
+/* calmer, simpler, larger text */
+body{background:#101114!important;font-size:16px}
+header{background:#17181c!important;border-bottom:1px solid var(--border)!important}header:after{display:none}
+.panel{background:#16171b!important;box-shadow:none!important;border-radius:10px}
+.main{gap:22px}.view-shell{gap:22px}
+.stitle h2{font-size:24px!important;letter-spacing:1.5px}
+.pill{font-size:11px!important;padding:3px 10px}.ssub{font-size:13px!important}
+.btn{background:#1f2126!important;border:1px solid #3a3d44!important;box-shadow:none!important;font-size:13px!important;padding:8px 14px!important}
+.btn.on{background:#3b2a2d!important;border-color:var(--accent)!important;color:var(--text)!important}
+.clbl{font-size:12px!important}
+#sbar{background:#16171b!important;font-size:13px!important}.chip{font-size:14px!important;background:#1d1f24!important}.chip b{font-size:18px!important}
+#loadDot,#loadState,.hdr-meta div:first-child,.countdown,.spk,.cp{display:none!important}
+.hdr-meta{font-size:13px!important}
+.scn{font-size:16px!important}.scs2{font-size:11px!important}.sv{font-size:26px!important}.sl{font-size:11px!important}
+table.hm th,table.tm th{font-size:12px!important;padding:11px 6px!important}
+table.hm td{height:44px!important}table.tm td{height:34px!important;font-size:13px!important}
+.cv{font-size:14px!important}table.hm td.yr{font-size:18px!important}table.hm td.tot{font-size:17px!important}
+.leg{font-size:12px!important}.ls{width:16px!important;height:16px!important}
+.chart-item{font-size:13px!important}
+</style>
 </head>
 <body>
-<header><div style="display:flex;align-items:center;align-self:center;gap:24px;flex-wrap:wrap"><img src="logo.png" alt="Hydrofire" style="height:clamp(56px,9vw,88px);width:auto;display:block;filter:brightness(.78) saturate(.7);opacity:.92"><div><div class="eyebrow">Liseo Assembly · Internal</div><div class="logo">TECHNICIAN <span>PERFORMANCE</span></div></div></div><div class="hdr-side"><div class="status-badge" id="liveBadge"><span class="badge-dot"></span><span id="badgeText">WAITING</span></div><div class="hdr-meta"><div>Source: <span id="sourceName">Loading...</span></div><div>Last Sync (SAST): <em id="updatedAt">Loading dashboard data...</em></div></div><div class="refresh-tools"><button class="btn refresh" id="refreshBtn" onclick="manualRefresh()">Refresh Now</button><span class="countdown" id="countdown">Next check in 60s</span></div></div></header>
+<header><div style="display:flex;align-items:center;align-self:center;gap:24px;flex-wrap:wrap"><img src="logo.png" alt="Hydrofire" style="height:clamp(56px,9vw,88px);width:auto;display:block;filter:brightness(.8) saturate(.75)"><div><div class="eyebrow">Liseo Assembly · Internal</div><div class="logo">TECHNICIAN <span>PERFORMANCE</span></div></div></div><div class="hdr-side"><div class="status-badge" id="liveBadge"><span class="badge-dot"></span><span id="badgeText">WAITING</span></div><div class="hdr-meta"><div>Source: <span id="sourceName">Loading...</span></div><div>Last Sync (SAST): <em id="updatedAt">Loading dashboard data...</em></div></div><div class="refresh-tools"><button class="btn refresh" id="refreshBtn" onclick="manualRefresh()">Refresh Now</button><span class="countdown" id="countdown">Next check in 60s</span></div></div></header>
 <div id="sbar"><span><span class="dot" id="loadDot"></span><span id="loadState">Loading data</span></span><span class="chip"><b id="su">-</b>total units</span><span class="chip"><b id="sp">-</b>total points</span><span class="chip"><b id="st">-</b>technicians</span><span class="chip"><b id="sa">-</b>active now</span></div>
 <div class="ctrls"><span class="clbl">View</span><div class="bg"><button class="btn on" id="bVT" onclick="setView('table')">Table</button><button class="btn" id="bVC" onclick="setView('chart')">Chart</button></div><div class="sep"></div><span class="clbl">Metric</span><div class="bg"><button class="btn on" id="bU" onclick="setM('units')">Units</button><button class="btn" id="bP" onclick="setM('points')">Points</button><button class="btn" id="bS" onclick="setM('pct')">% Share</button></div><div class="sep"></div><span class="clbl">Year</span><div class="bg" id="ybtns"></div><div class="sep"></div><span class="clbl">Roster</span><div class="bg"><button class="btn on" id="bA" onclick="setSc('all')">All</button><button class="btn" id="bAO" onclick="setSc('active')">Active Only</button></div></div>
 <div class="main">
